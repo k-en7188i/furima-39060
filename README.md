@@ -44,6 +44,7 @@ Things you may want to cover:
 - has_many :items
 - has_many :purchases
 
+
 ## items テーブル（商品情報）
 
 | Column        | Type       | Options                        |
@@ -65,6 +66,7 @@ Things you may want to cover:
 - belongs_to :user
 - has_one :purchases
 - has_one_attached :image(Active Storage)
+
 
 ## purchases テーブル（商品購入情報）
 
