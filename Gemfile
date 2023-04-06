@@ -65,3 +65,6 @@ group :development do
 end
 
 gem 'devise'
+
+gem 'activerecord-import'
+gem 'active_hash'
