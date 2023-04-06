@@ -76,6 +76,7 @@ RSpec.describe User, type: :model do
   describe "新規登録/本人情報確認" do
     before do
       @user = FactoryBot.build(:user, last_name: "山田", first_name: "太郎")
+      # @user = FactoryBot.build(:user)
     end
   
     it "お名前(全角)は、名字が必須であること" do
@@ -111,10 +112,34 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
   
+    it "last_name(全角)は、全角（漢字・ひらがな・カタカナ）での入力がであること" do
+      @user.last_name = "yes"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid")
+    end
+    
+    it "first_name(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+      @user.first_name = "no"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+    end    
+
+    it "last_name(全角)は、全角（ひらがな）での入力がであること" do
+      @user.last_name = "yes"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name is invalid")
+    end
+    
+    it "first_name(全角)は、全角（ひらがな）での入力が必須であること" do
+      @user.first_name = "no"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+    end
+
     it "お名前カナ(全角)は、名字が必須であること" do
       @user.last_name_kana = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana is invalid")
+      expect(@user.errors.full_messages).to include("Last name kana can't be blank")
     end
   
     it "お名前カナ(全角)は、名前が必須であること" do
@@ -137,4 +162,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
