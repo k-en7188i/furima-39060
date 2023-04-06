@@ -19,6 +19,7 @@ RSpec.describe User, type: :model do
 
       it 'passwordが6文字以上であれば登録できる' do
         @user.password = 'a12345'
+        @user.password_confirmation = 'a12345'
         @user.valid?
         expect(@user).to be_valid
       end
@@ -75,13 +76,30 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+
+    it '英字のみのパスワードでは登録できない' do
+      @user.password = 'password'
+      @user.password_confirmation = 'password'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid')
+    end
+
+    it '数字のみのパスワードでは登録できない' do
+      @user.password = '123456'
+      @user.password_confirmation = '123456'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid')
+    end
+
+    it '全角文字を含むパスワードでは登録できない' do
+      @user.password = 'パスワード1a'
+      @user.password_confirmation = 'パスワード1a'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid')
+    end
   end
 
   describe '本人情報確認' do
-    # before do
-    #   @user = FactoryBot.build(:user, last_name: '山田', first_name: '太郎', last_name_kana: 'ヤマダ', first_name_kana: 'タロウ',
-    #   birth_date: '2000-01-01')
-    # end
     context '本人情報確認がうまくいくとき' do
       it 'お名前(全角)は、漢字・ひらがな・カタカナでの入力ができる' do
         @user.last_name = '山田'
