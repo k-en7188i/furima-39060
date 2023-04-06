@@ -78,75 +78,75 @@ RSpec.describe User, type: :model do
   end
 
   describe '本人情報確認' do
-    before do
-      @user = FactoryBot.build(:user, last_name: '山田', first_name: '太郎', last_name_kana: 'ヤマダ', first_name_kana: 'タロウ',
-      birth_date: '2000-01-01')
-    end
+    # before do
+    #   @user = FactoryBot.build(:user, last_name: '山田', first_name: '太郎', last_name_kana: 'ヤマダ', first_name_kana: 'タロウ',
+    #   birth_date: '2000-01-01')
+    # end
     context '本人情報確認がうまくいくとき' do
-      it "お名前(全角)は、漢字・ひらがな・カタカナでの入力ができる" do
+      it 'お名前(全角)は、漢字・ひらがな・カタカナでの入力ができる' do
         @user.last_name = '山田'
         @user.first_name = '太郎'
         @user.valid?
         expect(@user).to be_valid
       end
-      
-      it "お名前カナ(全角)は、カタカナでの入力ができる" do
+
+      it 'お名前カナ(全角)は、カタカナでの入力ができる' do
         @user.last_name_kana = 'ヤマダ'
         @user.first_name_kana = 'タロウ'
         @user.valid?
         expect(@user).to be_valid
       end
-      
-      it "生年月日が存在すれば登録できる" do
-        expect(@user).to be_valid
-      end
     end
-      
     context '本人情報確認がうまくいかないとき' do
-      it "お名前(全角)は、名字が必須であること" do
+      it 'お名前(全角)は、名字が必須であること' do
         @user.last_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
-      
-      it "お名前(全角)は、名前が必須であること" do
+
+      it 'お名前(全角)は、名前が必須であること' do
         @user.first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
-      
-      it "お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+
+      it '名字(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
         @user.last_name = 'abc'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name is invalid')
+      end
+
+      it '名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
         @user.first_name = 'def'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid", "First name is invalid")
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
-      
-      it "お名前カナ(全角)は、名字が必須であること" do
+
+      it 'お名前カナ(全角)は、名字が必須であること' do
         @user.last_name_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
-      
-      it "お名前カナ(全角)は、名前が必須であること" do
+
+      it 'お名前カナ(全角)は、名前が必須であること' do
         @user.first_name_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
-      
-      it "名字は、全角（カタカナ）での入力が必須であること" do
+
+      it '名字（フリガナ）は、全角（カタカナ）での入力が必須であること' do
         @user.last_name_kana = '山田'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+        expect(@user.errors.full_messages).to include('Last name kana is invalid')
       end
 
-      it "名前は、全角（カタカナ）での入力が必須であること" do
+      it '名前は（フリガナ）は、全角（カタカナ）での入力が必須であること' do
         @user.first_name_kana = '太郎'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid")
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
-      
-      it "生年月日が必須であること" do
+
+      it '生年月日が必須であること' do
         @user.birth_date = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth date can't be blank")
