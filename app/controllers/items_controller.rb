@@ -13,9 +13,9 @@ before_action :authenticate_user!, only: [:new, :create]
   end
 
   def create
-    @item =Item.new(item_params)
+    @item = Item.new(item_params)
     if @item.save
-      binding.pry
+      # binding.pry
       redirect_to root_path
     else
       render :new
