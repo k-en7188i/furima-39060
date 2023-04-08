@@ -1,11 +1,10 @@
 window.addEventListener('load', () => {
-  console.log("OK、頑張れクソやろー！");
-
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
-    console.log("イベント発火");
-    const inputValue = priceInput.value;
-    console.log(inputValue);
+    let inputValue = priceInput.value;
+    inputValue = Math.floor(inputValue);
+
+    
 
     // 販売手数料（10%）を計算
     const fee = Math.floor(inputValue * 0.1);

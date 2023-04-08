@@ -130,7 +130,8 @@
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
     <li class='list'>
-      <%= link_to new_item_path do %>
+      <%# <%= link_to new_item_path do %> %>
+      <%= link_to '#' do %>
         <div class='item-img-content'>
           <%= image_tag "item-sample.png", class: "item-img" %>
 
@@ -160,7 +161,8 @@
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
-        <%= link_to new_item_path do %>
+        <%# <%= link_to new_item_path do %> %>
+        <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>

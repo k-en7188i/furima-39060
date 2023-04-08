@@ -12,9 +12,7 @@ class Item < ApplicationRecord
 
   validates :image, presence: true
   validates :price, presence: true,
-                    numericality: { less_than: 9_999_999, greater_than: 299, message: 'は299〜9999999の範囲内の半角数字で入力してください' }
-  # 以下はバリデーションが全角数字でも入力できるからダメ
-  # validates :price, format: { with: /\A[0-9]+\z/, message: "は半角数字で入力してください" }
+                    numericality: {only_integer: true, less_than: 9_999_999, greater_than: 299, message: 'は299〜9999999の範囲内の半角数字で入力してください' }
 
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :category_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
