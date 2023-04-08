@@ -1,7 +1,12 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+
   # ActiveHash アソシエーション
-  belongs_to :prefecture, :category, :condition, :shipping_day, :shipping_fee
+  belongs_to :prefecture
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :shipping_day
+  belongs_to :shipping_fee
   
   # 通常のアソシエーション
   belongs_to :user
