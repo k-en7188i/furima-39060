@@ -120,8 +120,5 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
     end
-
-    
-
   end
 end
