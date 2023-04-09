@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+function item_price (){
   const priceInput = document.getElementById("item-price");
 
   
@@ -28,4 +28,6 @@ window.addEventListener('load', () => {
     profitDom.innerHTML = profit; // 計算した販売利益を表示
   });
 
-});
+};
+
+window.addEventListener('load', item_price);
