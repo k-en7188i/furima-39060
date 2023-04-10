@@ -1,6 +1,5 @@
-
 function item_price (){
-  
+
   const priceInput = document.getElementById("item-price");
   
   
