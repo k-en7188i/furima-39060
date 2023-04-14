@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    return unless @item.purchase_history.present?
+
+    redirect_to root_path
   end
 
   def update
@@ -39,7 +42,6 @@ class ItemsController < ApplicationController
     redirect_to action: :index
   end
 
-
   private
 
   def item_params
@@ -53,7 +55,7 @@ class ItemsController < ApplicationController
 
   def users_checking
     return unless current_user.id != @item.user_id
+
     redirect_to root_path
   end
-
 end
