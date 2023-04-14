@@ -61,5 +61,41 @@ RSpec.describe PurchaseShipping, type: :model do
       @purchase_shipping.valid?
       expect(@purchase_shipping.errors.full_messages).to include('Phone number is invalid')
     end
+
+    it '都道府県に「---」が選択されている場合は購入できない' do
+      @purchase_shipping.prefecture_id = 1
+      @purchase_shipping.valid?
+      expect(@purchase_shipping.errors.full_messages).to include("Prefecture can't be blank")
+    end
+
+    it '電話番号が9桁以下では購入できない' do
+      @purchase_shipping.phone_number = '123456789'
+      @purchase_shipping.valid?
+      expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it '電話番号が12桁以上では購入できない' do
+      @purchase_shipping.phone_number = '123456789012'
+      @purchase_shipping.valid?
+      expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it 'tokenが空では購入できない' do
+      @purchase_shipping.token = nil
+      @purchase_shipping.valid?
+      expect(@purchase_shipping.errors.full_messages).to include("Token can't be blank")
+    end
+
+    it 'userが紐付いていなければ購入できない' do
+      @purchase_shipping.user_id = nil
+      @purchase_shipping.valid?
+      expect(@purchase_shipping.errors.full_messages).to include("User can't be blank")
+    end
+
+    it 'itemが紐付いていなければ購入できない' do
+      @purchase_shipping.item_id = nil
+      @purchase_shipping.valid?
+      expect(@purchase_shipping.errors.full_messages).to include("Item can't be blank")
+    end
   end
 end
