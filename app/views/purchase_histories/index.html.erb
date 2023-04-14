@@ -1,7 +1,5 @@
 <%= render "shared/second-header"%>
 
-
-<%#= form_with model: @purchase_shipping, url: item_purchase_histories_path, local: true do |f| %>
 <div class='transaction-contents'>
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
@@ -36,8 +34,6 @@
   
   <%= form_with model: @purchase_shipping, url: item_purchase_histories_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%= render 'shared/error_messages', model: @purchase_shipping %>
-    <%# カード情報の入力 %>
-    <%# <form class='credit-card-form' id="charge-form" method="post"> %>
       <div class='credit-card-form' >
         <h1 class='info-input-haedline'>
           クレジットカード情報入力
@@ -60,10 +56,7 @@
             <label class="form-text">有効期限</label>
             <span class="indispensable">必須</span>
           </div>
-          <%# <div class='input-expiration-date-wrap' > %>
-            <div class="input-expiration-date" id="card-exp" placeholder="有効期限" ></div>
-            <%# <div class="input-expiration-date" id="card-exp" ></div> %>
-          <%# </div> %>
+            <div class="input-expiration-date" id="card-exp" placeholder="有効期限" maxlength="4" ></div>
         </div>
         <div class="form-group">
           <div class='form-text-wrap'>
@@ -73,12 +66,9 @@
           <div class="input-default" id="card-cvc" placeholder="カード背面4桁もしくは3桁の番号" maxlength="4" ></div>
         </div>
       </div>
-    <%# </form> %>
-  <%# end %>
     <%# /カード情報の入力 %>
     
     <%# 配送先の入力 %>
-  <%#= form_with model: @purchase_address, url: item_purchase_histories_path, local: true do |f| %>
     <div class='shipping-address-form'>
       <h1 class='info-input-haedline'>
         配送先入力
@@ -134,5 +124,3 @@
   </div>
 </div>
 <%= render "shared/second-footer"%>
-
-<%# <script src="app/javascript/card.js"></script> %>
