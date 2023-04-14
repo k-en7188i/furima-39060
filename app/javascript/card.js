@@ -25,7 +25,6 @@ const pay = () => {
         const token = response.id;
         console.log(token);
         const renderDom = document.getElementById("charge-form");
-        // console.log("charge-form:", chargeForm); // デバッグ用のログを追加
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
