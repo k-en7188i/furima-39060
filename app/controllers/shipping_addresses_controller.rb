@@ -1,7 +1,7 @@
 # class ShippingAddressesController < ApplicationController
 #   def index
 #   end
-  
+
 #   def create
 #     Shipping_address.create(shipping_address_params)
 #   end

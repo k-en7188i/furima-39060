@@ -53,7 +53,7 @@ RSpec.describe PurchaseShipping, type: :model do
     it '電話番号が必須であること' do
       @purchase_shipping.phone_number = ''
       @purchase_shipping.valid?
-      expect(@purchase_shipping.errors.full_messages).to include("Phone number is invalid")
+      expect(@purchase_shipping.errors.full_messages).to include('Phone number is invalid')
     end
 
     it '電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと' do
@@ -63,4 +63,3 @@ RSpec.describe PurchaseShipping, type: :model do
     end
   end
 end
-
