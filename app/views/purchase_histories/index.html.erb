@@ -35,7 +35,7 @@
   <%= form_with model: @purchase_shipping, url: item_purchase_histories_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%= render 'shared/error_messages', model: @purchase_shipping %>
       <div class='credit-card-form' >
-        <h1 class='info-input-haedline'>
+        <h1 class='info-input-headline'>
           クレジットカード情報入力
         </h1>
         <div class="form-group">
@@ -56,7 +56,7 @@
             <label class="form-text">有効期限</label>
             <span class="indispensable">必須</span>
           </div>
-            <div class="input-expiration-date" id="card-exp" placeholder="有効期限" maxlength="4" ></div>
+            <div class="input-default" id="card-exp" placeholder="有効期限"  ></div>
         </div>
         <div class="form-group">
           <div class='form-text-wrap'>
@@ -70,7 +70,7 @@
     
     <%# 配送先の入力 %>
     <div class='shipping-address-form'>
-      <h1 class='info-input-haedline'>
+      <h1 class='info-input-headline'>
         配送先入力
       </h1>
       <div class="form-group">
